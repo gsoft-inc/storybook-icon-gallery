@@ -1,0 +1,63 @@
+{
+  "name": "storybook-icon-gallery",
+  "version": "0.1.0",
+  "description": "An icon gallery for Storybook docs that support multiple icon variants.",
+  "main": "src/index.js",
+  "repository": "https://github.com/gsoft-inc/storybook-icon-gallery.git",
+  "author": "Groupe GSoft inc.",
+  "license": "Apache-2.0",
+  "scripts": {
+    "start": "yarn watch",
+    "start-sb": "start-storybook -c storybook",
+    "start-docs": "start-storybook -c storybook --docs",
+    "build": "babel src -d dist --config-file ./babel.config.js",
+    "watch": "yarn build --watch",
+    "reset": "yarn clean && rimraf node_modules",
+    "clean": "rimraf dist"
+  },
+  "peerDependencies": {
+    "lodash": "*",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-spring": "^8.0.0"
+  },
+  "dependencies": {
+    "prop-types": "*",
+    "styled-jsx": "^3.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.7.7",
+    "@babel/core": "7.7.7",
+    "@babel/plugin-transform-runtime": "7.7.6",
+    "@babel/preset-env": "7.7.7",
+    "@babel/preset-react": "7.7.4",
+    "@orbit-ui/fonts": "2.0.0",
+    "@orbit-ui/icons": "4.0.1",
+    "@sharegate/browserslist-config-recommended": "1.0.1",
+    "@sharegate/eslint-config-lodash": "1.0.2",
+    "@sharegate/eslint-config-react": "1.1.0",
+    "@sharegate/eslint-config-recommended": "1.1.0",
+    "@sharegate/stylelint-config-recommended": "1.0.0",
+    "@storybook/addon-docs": "5.3.0-rc.3",
+    "@storybook/react": "5.3.0-rc.3",
+    "@svgr/webpack": "5.0.0",
+    "babel-eslint": "10.0.3",
+    "babel-loader": "8.0.6",
+    "babel-plugin-named-asset-import": "0.3.5",
+    "babel-plugin-react-require": "3.1.1",
+    "browserslist": "4.8.2",
+    "eslint": "6.8.0",
+    "eslint-plugin-mdx": "1.6.5",
+    "lodash": "4.17.15",
+    "prop-types": "15.7.2",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "react-spring": "8.0.27",
+    "rimraf": "3.0.0",
+    "serve": "11.2.0",
+    "stylelint": "12.0.0"
+  },
+  "engines": {
+    "node": ">=12"
+  }
+}

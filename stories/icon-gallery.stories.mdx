@@ -1,0 +1,19 @@
+import { Meta, Preview, Story } from "@storybook/addon-docs/blocks";
+import { IconGallery } from "../src";
+import { AddIcon24 } from "@orbit-ui/icons";
+
+<Meta title="IconGallery" />
+
+# Hey!!
+
+<Preview>
+    <Story name="1 variant">
+        <IconGallery>
+            <IconGallery.Item name={name}>
+                <IconGallery.Variant size={24}>
+                    <AddIcon24 />
+                </IconGallery.Variant>
+            </IconGallery.Item>
+        </IconGallery>
+    </Story>
+</Preview>

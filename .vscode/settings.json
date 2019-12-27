@@ -1,0 +1,24 @@
+{
+    "editor.minimap.enabled": false,
+    "editor.wordWrap": "off",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+        "source.organizeImports": true
+    },
+    "editor.formatOnSave": true,
+    "[html]": {
+        "editor.formatOnSave": false
+    },
+    "javascript.format.enable": false,
+    "javascript.validate.enable": true,
+    "json.format.enable": false,
+    "css.validate": false,
+    "eslint.alwaysShowStatus": true,
+    "eslint.packageManager": "yarn",
+    "eslint.validate": ["javascript", "javascriptreact", "mdx"],
+    "stylelint.autoFixOnSave": true,
+    "search.exclude": {
+        "**/node_modules*": true,
+        "**/dist*": true
+    },
+}
