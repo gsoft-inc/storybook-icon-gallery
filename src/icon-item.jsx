@@ -1,7 +1,7 @@
-import { CONTEXT_SHAPE } from "./context";
-import { Children, cloneElement } from "react";
 import { any, shape, string } from "prop-types";
+import { Children, cloneElement } from "react";
 import css from "styled-jsx/css";
+import { CONTEXT_SHAPE } from "./context";
 
 const styles = css` /* stylelint-disable-line */
     .item {
@@ -28,11 +28,11 @@ function renderVariant(variant, context) {
 }
 
 export function IconItem({ name, context, children }) {
-    const { getDisplayName, inferIconSize } = context;
+    const { getDisplayName, autosize } = context;
 
     const displayName = getDisplayName({ itemName: name });
     const variants = Children.toArray(children);
-    const maxRenderingSize = inferIconSize ? Math.max(...variants.map(x => x.props.size)) : null;
+    const maxRenderingSize = autosize ? Math.max(...variants.map(x => x.props.size)) : null;
 
     return (
         <div className="item sbdocs sbdocs-ig-item">
@@ -46,7 +46,16 @@ export function IconItem({ name, context, children }) {
 }
 
 IconItem.propTypes = {
+    /**
+     * The item name.
+     */
     name: string.isRequired,
+    /**
+     * @ignore
+     */
     context: shape(CONTEXT_SHAPE),
+    /**
+     * @ignore
+     */
     children: any.isRequired
 };

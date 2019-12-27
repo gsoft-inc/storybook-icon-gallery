@@ -5,3 +5,11 @@ body {
     /* This is the default browser font-size, it's set here to make it easier to understand */
     font-size: 16px;
 }
+
+.sbdocs.sbdocs-h1 {
+    font-weight: 600;
+}
+
+.sbdocs.sbdocs-h2 {
+    margin: 1.5rem 0;
+}
