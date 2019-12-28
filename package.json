@@ -1,6 +1,6 @@
 {
   "name": "storybook-icon-gallery",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "An icon gallery for Storybook docs that support multiple icon variants.",
   "main": "src/index.js",
   "repository": "https://github.com/gsoft-inc/storybook-icon-gallery.git",
