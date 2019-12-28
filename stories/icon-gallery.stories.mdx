@@ -132,7 +132,7 @@ Each item can have a different number of variants.
 
 ### Copy value
 
-By default, the copy value of a variant is the concatenation of the item name and the variant size. A custom copy value can be specified with the `copyValue` prop of the `<IconGallery.Variant />` component.
+A custom copy value can be specified with the `copyValue` prop.
 
 <Preview>
     <Story name="copy value">
@@ -146,14 +146,12 @@ By default, the copy value of a variant is the concatenation of the item name an
     </Story>
 </Preview>
 
-### getDisplayName
-
-A function can be provided to customize the display name of the items.
+To apply a custom pattern for all icons copy value, a function can be provided to the `getCopyValue` prop of the `IconGallery` component.
 
 <Preview>
-    <Story name="get display name">
+    <Story name="get copy value">
         <IconGallery
-            getDisplayName={({ itemName }) => itemName.toUpperCase()}
+            getCopyValue={({ itemName, variantSize }) => `${itemName.toUpperCase()}-${variantSize}`}
         >
             <IconGallery.Item name="add">
                 <IconGallery.Variant size={24}>
@@ -164,14 +162,14 @@ A function can be provided to customize the display name of the items.
     </Story>
 </Preview>
 
-### getCopyValue
+### Items display name
 
-A function can be provided to customize the copy value of the variants.
+To apply a custom pattern for the display name of all the items, a function can be provided to the `getDisplayName` prop of the `IconGallery` component.
 
 <Preview>
-    <Story name="get copy value">
+    <Story name="get display name">
         <IconGallery
-            getCopyValue={({ itemName, variantSize }) => `${itemName.toUpperCase()}-${variantSize}`}
+            getDisplayName={({ itemName }) => itemName.toUpperCase()}
         >
             <IconGallery.Item name="add">
                 <IconGallery.Variant size={24}>
@@ -206,7 +204,7 @@ When autosize is disabled, the icons components are responsible of their size.
 
 ### Render function
 
-The icon gallery have been design for flexibility at the expense of redundacy. To stop repeating over and over the same variants, you can define a custom render function.
+The icon gallery have been design for flexibility at the expense of redundacy. To stop repeating over and over the same boilerplate code, you can define a custom render function.
 
 ```jsx
 function renderItem(name, Icon24, Icon32) {

@@ -22,10 +22,9 @@
     "lint-ci": "yarn eslint -- -- 0 && yarn stylelint",
     "eslint": "run-s \"eslint:* --max-warnings={1:--1}\"",
     "eslint:pkg": "eslint --ext .js,.jsx src",
-    "eslint:stories": "eslint --ext .js,.jsx stories",
+    "eslint:stories": "eslint --ext .js,.mdx stories",
     "stylelint": "run-s stylelint:*",
-    "stylelint:pkg": "stylelint \"src/**/*.css\"",
-    "stylelint:stories": "stylelint \"stories/**/*.css\"",
+    "stylelint:pkg": "stylelint \"src/**/*.jsx\"",
     "deploy-docs": "netlify deploy --prod --dir=storybook/dist/docs --site=df98c158-8a37-4882-b8b9-59540f32c204",
     "netlify-ci-docs": "yarn build:docs"
   },
