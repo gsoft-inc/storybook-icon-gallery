@@ -1,8 +1,9 @@
-import { any, bool, func } from "prop-types";
+import { any, func } from "prop-types";
 import { Children, cloneElement } from "react";
 import css from "styled-jsx/css";
 import { IconItem } from "./icon-item";
 import { IconVariant } from "./icon-variant";
+import { IconVariants } from "./icon-variants";
 
 const styles = css` /* stylelint-disable-line */
     .icon-gallery {
@@ -18,11 +19,10 @@ function renderItem(item, context) {
     });
 }
 
-export function IconGallery({ getCopyValue, getDisplayName, autosize, children }) {
+export function IconGallery({ getCopyValue, getDisplayName, children }) {
     const context = {
         getCopyValue,
-        getDisplayName,
-        autosize
+        getDisplayName
     };
 
     return (
@@ -36,20 +36,16 @@ export function IconGallery({ getCopyValue, getDisplayName, autosize, children }
 IconGallery.propTypes = {
     /**
      * Called during the rendering of an item to retrieve the display name of the matching item.
-     * @param {{ itemName: string }} data
+     * @param {{ name: string }} data
      * @returns {string}
      */
     getDisplayName: func,
     /**
      * Called during the rendering of a variant to retrieve the value to copy to the clipboard when the matching variant is clicked.
-     * @param {{ itemName: string, variantSize: number, icon: Component }} data
+     * @param {{ name: string, size: number, isVariant: boolean }} data
      * @returns {string}
      */
     getCopyValue: func,
-    /**
-     * Automatically set the variant size as the width and height of the variant icon.
-     */
-    autosize: bool,
     /**
      * @ignore
      */
@@ -57,10 +53,10 @@ IconGallery.propTypes = {
 };
 
 IconGallery.defaultProps = {
-    getDisplayName: ({ itemName }) => itemName,
-    getCopyValue: ({ itemName, variantSize }) => `${itemName}${variantSize}`,
-    autosize: true
+    getDisplayName: ({ name }) => name,
+    getCopyValue: ({ name, size, isVariant }) => isVariant ? `${name}${size}` : name
 };
 
-IconGallery.Item = IconItem;
+IconGallery.Variants = IconVariants;
 IconGallery.Variant = IconVariant;
+IconGallery.Item = IconItem;

@@ -1,45 +1,45 @@
-import { any, shape, string } from "prop-types";
+import { any, number, shape, string } from "prop-types";
 import { Children, cloneElement } from "react";
 import css from "styled-jsx/css";
-import { CONTEXT_SHAPE } from "./context";
+import { InnerIcon } from "./inner-icon";
+import { CONTEXT_SHAPE, itemStyles } from "./shared";
 
 const styles = css` /* stylelint-disable-line */
-    .item {
-        flex-direction: column;
-        flex: 0 1 calc(20% - 10px);
-        margin: 0 10px 30px 0;
-    }
-
-    .name {
-        padding-bottom: .75rem;
-        text-align: center;
-    }
-
-    .variants {
+    .icon-wrapper {
         display: flex;
         justify-content: center;
     }
+
+    .icon-container {
+        min-width: 2rem;
+        min-height: 2rem;
+    }
 `;
 
-function renderVariant(variant, context) {
-    return cloneElement(variant, {
-        context
+function renderIcon(icon, size) {
+    return cloneElement(icon, {
+        style: { width: size, height: size }
     });
 }
 
-export function IconItem({ name, context, children }) {
-    const { getDisplayName, autosize } = context;
+export function IconItem({ name, size, copyValue, children, context }) {
+    const { getDisplayName, getCopyValue } = context;
 
-    const displayName = getDisplayName({ itemName: name });
-    const variants = Children.toArray(children);
-    const maxRenderingSize = autosize ? Math.max(...variants.map(x => x.props.size)) : null;
+    const icon = Children.only(children);
+    const displayName = getDisplayName({ name });
 
     return (
         <div className="item sbdocs sbdocs-ig-item">
             <div className="name sbdocs sbdocs-ig-name">{displayName}</div>
-            <div className="variants sbdocs sbdocs-ig-variants">
-                {variants.map(x => renderVariant(x, { ...context, name, renderingSize: maxRenderingSize }))}
+            <div className="icon-wrapper sbdocs-ig-icon-wrapper">
+                <div className="icon-container sbdocs-ig-icon-container" style={{ width: size, height: size }}>
+                    <InnerIcon
+                        icon={renderIcon(icon, size)}
+                        copyValue={copyValue ? copyValue : getCopyValue({ name, size, isVariant: false })}
+                    />
+                </div>
             </div>
+            <style jsx>{itemStyles}</style>
             <style jsx>{styles}</style>
         </div>
     );
@@ -47,9 +47,17 @@ export function IconItem({ name, context, children }) {
 
 IconItem.propTypes = {
     /**
-     * The item name.
+     * The icon name.
      */
     name: string.isRequired,
+    /**
+     * The icon size.
+     */
+    size: number.isRequired,
+    /**
+     * A custom value to copy to the clipboard when the variant is clicked.
+     */
+    copyValue: string,
     /**
      * @ignore
      */
@@ -57,5 +65,5 @@ IconItem.propTypes = {
     /**
      * @ignore
      */
-    children: any.isRequired
+    children: any
 };
