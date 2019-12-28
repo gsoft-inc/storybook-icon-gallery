@@ -27,7 +27,7 @@
     "stylelint:pkg": "stylelint \"src/**/*.(js|jsx)\"",
     "deploy-docs": "netlify deploy --prod --dir=storybook/dist/docs --site=df98c158-8a37-4882-b8b9-59540f32c204",
     "netlify-ci-docs": "yarn install && yarn build:docs",
-    "release": "yarn login && yarn np --no-cleanup --no-tests"
+    "release": "yarn login && yarn build:pkg && yarn np --no-cleanup --no-tests --contents dist"
   },
   "peerDependencies": {
     "react": "^16.12.0",
