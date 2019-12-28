@@ -36,13 +36,13 @@ export function IconGallery({ getCopyValue, getDisplayName, children }) {
 IconGallery.propTypes = {
     /**
      * Called during the rendering of an item to retrieve the display name of the matching item.
-     * @param {{ itemName: string }} data
+     * @param {{ name: string }} data
      * @returns {string}
      */
     getDisplayName: func,
     /**
      * Called during the rendering of a variant to retrieve the value to copy to the clipboard when the matching variant is clicked.
-     * @param {{ itemName: string, variantSize: ?number, icon: Element }} data
+     * @param {{ name: string, size: number, isVariant: boolean }} data
      * @returns {string}
      */
     getCopyValue: func,
@@ -53,8 +53,8 @@ IconGallery.propTypes = {
 };
 
 IconGallery.defaultProps = {
-    getDisplayName: ({ itemName }) => itemName,
-    getCopyValue: ({ itemName, variantSize }) => variantSize ? `${itemName}${variantSize}` : itemName
+    getDisplayName: ({ name }) => name,
+    getCopyValue: ({ name, size, isVariant }) => isVariant ? `${name}${size}` : name
 };
 
 IconGallery.Variants = IconVariants;

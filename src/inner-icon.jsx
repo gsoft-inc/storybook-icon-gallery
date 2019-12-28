@@ -5,7 +5,7 @@ import { CheckmarkIcon } from "./assets";
 
 // Using css.resolve because of the react-spring animation.
 const { className, styles } = css.resolve` /* stylelint-disable-line */
-    .iconContainer {
+    .icon {
         position: relative;
         display: flex;
         justify-content: center;
@@ -14,7 +14,7 @@ const { className, styles } = css.resolve` /* stylelint-disable-line */
         height: 100%;
     }
 
-    .copyContainer {
+    .copy {
         position: absolute;
         opacity: 0;
         transition: opacity .15s ease-in;
@@ -27,14 +27,14 @@ const { className, styles } = css.resolve` /* stylelint-disable-line */
         height: 100%;
     }
 
-    .iconContainer:hover .copyContainer,
-    .iconContainer:focus .copyContainer,
-    .iconContainer:active .copyContainer {
+    .icon:hover .copy,
+    .icon:focus .copy,
+    .icon:active .copy {
         opacity: 1;
         transition: opacity .15s ease-in;
     }
 
-    .copyAction {
+    .copy-action {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -46,7 +46,7 @@ const { className, styles } = css.resolve` /* stylelint-disable-line */
         height: 100%;
     }
 
-    .copySucceeded {
+    .copy-succeeded {
         position: absolute;
         display: flex;
         justify-content: center;
@@ -55,13 +55,13 @@ const { className, styles } = css.resolve` /* stylelint-disable-line */
         height: 100%;
     }
 
-    .copyCheckmark {
+    .copy-checkmark {
         width: 1rem;
         height: 1rem;
         fill: #FFF;
     }
 
-    .copyForm {
+    .copy-form {
         opacity: 0.01;
         height: 0;
         position: absolute;
@@ -108,22 +108,22 @@ export function InnerIcon({ icon, copyValue }) {
     };
 
     return (
-        <div className={`${className} iconContainer sbdocs sbdocs-ig-icon-container`}>
+        <div className={`${className} icon sbdocs sbdocs-ig-icon`}>
             {icon}
-            <div className={`${className} copyContainer sbdocs sbdocs-ig-copy-container`} onClick={copyToClipboard}>
+            <div className={`${className} copy sbdocs sbdocs-ig-copy`} onClick={copyToClipboard}>
                 {copyAnimation.map(({ item, props, key }) => {
                     if (item) {
                         return (
-                            <a.div style={props} className={`${className} copySucceeded sbdocs sbdocs-ig-copy-succeeded`} key={key}>
-                                <CheckmarkIcon className={`${className} copyCheckmark sbdocs sbdocs-ig-copy-checkmark`} />
+                            <a.div style={props} className={`${className} copy-succeeded sbdocs sbdocs-ig-copy-succeeded`} key={key}>
+                                <CheckmarkIcon className={`${className} copy-checkmark sbdocs sbdocs-ig-copy-checkmark`} />
                             </a.div>
                         );
                     }
 
-                    return <a.div style={props} className={`${className} copyAction sbdocs sbdocs-ig-copy-action`} key={key}>Copy</a.div>;
+                    return <a.div style={props} className={`${className} copy-action sbdocs sbdocs-ig-copy-action`} key={key}>Copy</a.div>;
                 })}
             </div>
-            <form className={`${className} copyForm`}>
+            <form className={`${className} copy-form`}>
                 <textarea
                     readOnly
                     ref={textAreaRef}

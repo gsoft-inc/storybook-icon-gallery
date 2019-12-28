@@ -151,7 +151,7 @@ To apply a custom pattern for all icons copy value, a function can be provided t
 
 <Preview>
     <Story name="get copy value">
-        <IconGallery getCopyValue={({ itemName, variantSize }) => `${itemName.toUpperCase()}-${variantSize}`}>
+        <IconGallery getCopyValue={({ name, size }) => `${name.toUpperCase()}-${size}`}>
             <IconGallery.Variants name="add">
                 <IconGallery.Variant size={24}>
                     <AddIcon24 />
@@ -167,32 +167,10 @@ To apply a custom pattern for the display name of all the items, a function can 
 
 <Preview>
     <Story name="get display name">
-        <IconGallery getDisplayName={({ itemName }) => itemName.toUpperCase()}>
+        <IconGallery getDisplayName={({ name }) => name.toUpperCase()}>
             <IconGallery.Variants name="add">
                 <IconGallery.Variant size={24}>
                     <AddIcon24 />
-                </IconGallery.Variant>
-            </IconGallery.Variants>
-        </IconGallery>
-    </Story>
-</Preview>
-
-### Autosize
-
-When autosize is disabled, it's your responsability to set the `width` and `height` of the icons.
-
-<Preview>
-    <Story name="autosize">
-        <IconGallery>
-            <IconGallery.Variants name="add" autosize={false}>
-                <IconGallery.Variant size={24}>
-                    <AddIcon24 style={{ width: "24px", height: "24px" }} />
-                </IconGallery.Variant>
-                <IconGallery.Variant size={32}>
-                    <AddIcon style={{ width: "32px", height: "32px" }} />
-                </IconGallery.Variant>
-                <IconGallery.Variant size={48}>
-                    <AddIcon style={{ width: "48px", height: "48px" }} />
                 </IconGallery.Variant>
             </IconGallery.Variants>
         </IconGallery>
@@ -206,8 +184,23 @@ Variants are optionnal, you can still use this component if your design system d
 <Preview>
     <Story name="no-variants">
         <IconGallery>
-            <IconGallery.Item name="add">
-                <AddIcon style={{ width: "32px", height: "32px" }} />
+            <IconGallery.Item name="add" size={32}>
+                <AddIcon />
+            </IconGallery.Item>
+            <IconGallery.Item name="calendar" size={32}>
+                <CalendarIcon />
+            </IconGallery.Item>
+            <IconGallery.Item name="check" size={32}>
+                <CheckIcon />
+            </IconGallery.Item>
+            <IconGallery.Item name="arrow" size={24}>
+                <ArrowIcon24 />
+            </IconGallery.Item>
+            <IconGallery.Item name="circle" size={24}>
+                <CircleIcon24 />
+            </IconGallery.Item>
+            <IconGallery.Item name="csv" size={32}>
+                <CsvIcon />
             </IconGallery.Item>
         </IconGallery>
     </Story>

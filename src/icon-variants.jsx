@@ -1,8 +1,7 @@
-import { any, bool, shape, string } from "prop-types";
+import { any, shape, string } from "prop-types";
 import { Children, cloneElement } from "react";
 import css from "styled-jsx/css";
-import { CONTEXT_SHAPE } from "./context";
-import { itemStyles } from "./styles";
+import { CONTEXT_SHAPE, itemStyles } from "./shared";
 
 const styles = css` /* stylelint-disable-line */
     .variants {
@@ -17,17 +16,17 @@ function renderVariant(variant, context) {
     });
 }
 
-export function IconVariants({ name, autosize, children, context }) {
+export function IconVariants({ name, children, context }) {
     const { getDisplayName } = context;
 
-    const displayName = getDisplayName({ itemName: name });
-    const renderingSize = autosize ? Math.max(...Children.map(children, x => x.props.size)) : null;
+    const displayName = getDisplayName({ name });
+    const renderingSize = Math.max(...Children.map(children, x => x.props.size));
 
     return (
         <div className="item sbdocs sbdocs-ig-item">
             <div className="name sbdocs sbdocs-ig-name">{displayName}</div>
             <div className="variants sbdocs sbdocs-ig-variants">
-                {Children.map(children, x => renderVariant(x, { ...context, itemName: name, autosize, renderingSize }))}
+                {Children.map(children, x => renderVariant(x, { ...context, itemName: name, renderingSize }))}
             </div>
             <style jsx>{itemStyles}</style>
             <style jsx>{styles}</style>
@@ -41,10 +40,6 @@ IconVariants.propTypes = {
      */
     name: string.isRequired,
     /**
-     * Automatically set the variant size as the width and height of the underlying icons.
-     */
-    autosize: bool,
-    /**
      * @ignore
      */
     context: shape(CONTEXT_SHAPE),
@@ -52,8 +47,4 @@ IconVariants.propTypes = {
      * @ignore
      */
     children: any.isRequired
-};
-
-IconVariants.defaultProps = {
-    autosize: true
 };

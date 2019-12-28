@@ -1,8 +1,8 @@
-import { any, bool, number, shape, string } from "prop-types";
+import { any, number, shape, string } from "prop-types";
 import { Children, cloneElement } from "react";
 import css from "styled-jsx/css";
-import { CONTEXT_SHAPE } from "./context";
 import { InnerIcon } from "./inner-icon";
+import { CONTEXT_SHAPE } from "./shared";
 
 const styles = css` /* stylelint-disable-line */
     .variant:not(:last-child) {
@@ -22,14 +22,10 @@ const styles = css` /* stylelint-disable-line */
     }
 `;
 
-function renderIcon(icon, size, autosize) {
-    if (autosize) {
-        return cloneElement(icon, {
-            style: { width: size, height: size }
-        });
-    }
-
-    return icon;
+function renderIcon(icon, size) {
+    return cloneElement(icon, {
+        style: { width: size, height: size }
+    });
 }
 
 function getIcon(children) {
@@ -43,23 +39,17 @@ function getIcon(children) {
 }
 
 export function IconVariant({ size, copyValue, children, context }) {
-    const { getCopyValue, itemName, autosize, renderingSize } = context;
+    const { getCopyValue, itemName, renderingSize } = context;
 
     const icon = getIcon(children);
-    const containerStyle = autosize
-        ? {
-            width: renderingSize,
-            height: renderingSize
-        }
-        : {};
 
     return (
         <div className="variant sbdocs sbdocs-ig-variant">
             <div className="header sbdocs sbdocs-ig-variant-header">{size}</div>
-            <div className="content sbdocs sbdocs-ig-variant-content" style={containerStyle}>
+            <div className="content sbdocs sbdocs-ig-variant-content" style={{ width: renderingSize, height: renderingSize }}>
                 {icon && <InnerIcon
-                    icon={renderIcon(icon, size, autosize)}
-                    copyValue={copyValue ? copyValue : getCopyValue({ itemName, variantSize: size, icon })}
+                    icon={renderIcon(icon, size)}
+                    copyValue={copyValue ? copyValue : getCopyValue({ name: itemName, size, isVariant: true })}
                 />}
             </div>
             <style jsx>{styles}</style>
@@ -82,7 +72,6 @@ IconVariant.propTypes = {
     context: shape({
         ...CONTEXT_SHAPE,
         itemName: string,
-        autosize: bool,
         renderingSize: number
     }),
     /**
