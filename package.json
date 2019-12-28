@@ -29,7 +29,6 @@
     "netlify-ci-docs": "yarn build:docs"
   },
   "peerDependencies": {
-    "lodash": "*",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-spring": "^8.0.0"

@@ -1,8 +1,9 @@
-import { any, bool, func } from "prop-types";
+import { any, func } from "prop-types";
 import { Children, cloneElement } from "react";
 import css from "styled-jsx/css";
-import { IconItem } from "./icon-item";
-import { IconVariant } from "./icon-variant";
+import { Icon } from "./icon";
+import { Item } from "./item";
+import { Variant } from "./variant";
 
 const styles = css` /* stylelint-disable-line */
     .icon-gallery {
@@ -18,11 +19,10 @@ function renderItem(item, context) {
     });
 }
 
-export function IconGallery({ getCopyValue, getDisplayName, autosize, children }) {
+export function IconGallery({ getCopyValue, getDisplayName, children }) {
     const context = {
         getCopyValue,
-        getDisplayName,
-        autosize
+        getDisplayName
     };
 
     return (
@@ -42,14 +42,10 @@ IconGallery.propTypes = {
     getDisplayName: func,
     /**
      * Called during the rendering of a variant to retrieve the value to copy to the clipboard when the matching variant is clicked.
-     * @param {{ itemName: string, variantSize: number, icon: Component }} data
+     * @param {{ itemName: string, variantSize: ?number, icon: Element }} data
      * @returns {string}
      */
     getCopyValue: func,
-    /**
-     * Automatically set the variant size as the width and height of the variant icon.
-     */
-    autosize: bool,
     /**
      * @ignore
      */
@@ -58,9 +54,9 @@ IconGallery.propTypes = {
 
 IconGallery.defaultProps = {
     getDisplayName: ({ itemName }) => itemName,
-    getCopyValue: ({ itemName, variantSize }) => `${itemName}${variantSize}`,
-    autosize: true
+    getCopyValue: ({ itemName, variantSize }) => variantSize ? `${itemName}${variantSize}` : itemName
 };
 
-IconGallery.Item = IconItem;
-IconGallery.Variant = IconVariant;
+IconGallery.Item = Item;
+IconGallery.Variant = Variant;
+IconGallery.Icon = Icon;

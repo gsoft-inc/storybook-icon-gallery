@@ -15,37 +15,36 @@ const styles = css` /* stylelint-disable-line */
         text-align: center;
     }
 
-    .variants {
+    .children {
         display: flex;
         justify-content: center;
     }
 `;
 
-function renderVariant(variant, context) {
-    return cloneElement(variant, {
+function renderChild(child, context) {
+    return cloneElement(child, {
         context
     });
 }
 
-export function IconItem({ name, context, children }) {
-    const { getDisplayName, autosize } = context;
+export function Item({ name, context, children }) {
+    const { getDisplayName } = context;
 
     const displayName = getDisplayName({ itemName: name });
-    const variants = Children.toArray(children);
-    const maxRenderingSize = autosize ? Math.max(...variants.map(x => x.props.size)) : null;
+    const childrenProps = Children.map(children, x => x.props);
 
     return (
         <div className="item sbdocs sbdocs-ig-item">
             <div className="name sbdocs sbdocs-ig-name">{displayName}</div>
-            <div className="variants sbdocs sbdocs-ig-variants">
-                {variants.map(x => renderVariant(x, { ...context, name, renderingSize: maxRenderingSize }))}
+            <div className="children">
+                {Children.map(children, x => renderChild(x, { ...context, itemName: name, itemChildrenProps: childrenProps }))}
             </div>
             <style jsx>{styles}</style>
         </div>
     );
 }
 
-IconItem.propTypes = {
+Item.propTypes = {
     /**
      * The item name.
      */
