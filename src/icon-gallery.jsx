@@ -1,9 +1,9 @@
 import { any, func } from "prop-types";
 import { Children, cloneElement } from "react";
 import css from "styled-jsx/css";
-import { Icon } from "./icon";
-import { Item } from "./item";
-import { Variant } from "./variant";
+import { IconItem } from "./icon-item";
+import { IconVariant } from "./icon-variant";
+import { IconVariants } from "./icon-variants";
 
 const styles = css` /* stylelint-disable-line */
     .icon-gallery {
@@ -57,6 +57,6 @@ IconGallery.defaultProps = {
     getCopyValue: ({ itemName, variantSize }) => variantSize ? `${itemName}${variantSize}` : itemName
 };
 
-IconGallery.Item = Item;
-IconGallery.Variant = Variant;
-IconGallery.Icon = Icon;
+IconGallery.Variants = IconVariants;
+IconGallery.Variant = IconVariant;
+IconGallery.Item = IconItem;

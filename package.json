@@ -24,7 +24,7 @@
     "eslint:pkg": "eslint --ext .js,.jsx src",
     "eslint:stories": "eslint --ext .js,.mdx stories",
     "stylelint": "run-s stylelint:*",
-    "stylelint:pkg": "stylelint \"src/**/*.jsx\"",
+    "stylelint:pkg": "stylelint \"src/**/*.(js|jsx)\"",
     "deploy-docs": "netlify deploy --prod --dir=storybook/dist/docs --site=df98c158-8a37-4882-b8b9-59540f32c204",
     "netlify-ci-docs": "yarn build:docs"
   },

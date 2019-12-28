@@ -36,9 +36,9 @@ An icon gallery for Storybook docs that support multiple icon variants.
 <Props
     components={{
         "IconGallery": IconGallery,
-        "IconGallery.Item": IconGallery.Item,
+        "IconGallery.Variants": IconGallery.Variants,
         "IconGallery.Variant": IconGallery.Variant,
-        "IconGallery.Icon": IconGallery.Icon
+        "IconGallery.Item": IconGallery.Item
     }}
 />
 
@@ -46,14 +46,14 @@ An icon gallery for Storybook docs that support multiple icon variants.
 
 export function renderItem(name, Icon24, Icon32) {
     return (
-        <IconGallery.Item name={name}>
+        <IconGallery.Variants name={name}>
             <IconGallery.Variant size={24}>
                 {Icon24 && <Icon24 />}
             </IconGallery.Variant>
             <IconGallery.Variant size={32}>
                 {Icon32 && <Icon32 />}
             </IconGallery.Variant>
-        </IconGallery.Item>
+        </IconGallery.Variants>
     );
 }
 
@@ -64,11 +64,11 @@ An item can have a single variant.
 <Preview>
     <Story name="single variant">
         <IconGallery>
-            <IconGallery.Item name="add">
+            <IconGallery.Variants name="add">
                 <IconGallery.Variant size={24}>
                     <AddIcon24 />
                 </IconGallery.Variant>
-            </IconGallery.Item>
+            </IconGallery.Variants>
         </IconGallery>
     </Story>
 </Preview>
@@ -80,14 +80,14 @@ An item can have multiple variants.
 <Preview>
     <Story name="multiple variants">
         <IconGallery>
-            <IconGallery.Item name="add">
+            <IconGallery.Variants name="add">
                 <IconGallery.Variant size={24}>
                     <AddIcon24 />
                 </IconGallery.Variant>
                 <IconGallery.Variant size={32}>
                     <AddIcon />
                 </IconGallery.Variant>
-            </IconGallery.Item>
+            </IconGallery.Variants>
         </IconGallery>
     </Story>
 </Preview>
@@ -99,34 +99,34 @@ Each item can have a different number of variants.
 <Preview>
     <Story name="different number of variants">
         <IconGallery>
-            <IconGallery.Item name="add">
+            <IconGallery.Variants name="add">
                 <IconGallery.Variant size={24}>
                     <AddIcon24 />
                 </IconGallery.Variant>
                 <IconGallery.Variant size={32}>
                     <AddIcon />
                 </IconGallery.Variant>
-            </IconGallery.Item>
-            <IconGallery.Item name="video">
+            </IconGallery.Variants>
+            <IconGallery.Variants name="video">
                 <IconGallery.Variant size={32}>
                     <VideoIcon />
                 </IconGallery.Variant>
-            </IconGallery.Item>
-            <IconGallery.Item name="calendar">
+            </IconGallery.Variants>
+            <IconGallery.Variants name="calendar">
                 <IconGallery.Variant size={24}>
                     <CalendarIcon24 />
                 </IconGallery.Variant>
                 <IconGallery.Variant size={32}>
                     <CalendarIcon />
                 </IconGallery.Variant>
-            </IconGallery.Item>
-            <IconGallery.Item name="check">
+            </IconGallery.Variants>
+            <IconGallery.Variants name="check">
                 <IconGallery.Variant size={24}>
                 </IconGallery.Variant>
                 <IconGallery.Variant size={32}>
                     <CheckIcon />
                 </IconGallery.Variant>
-            </IconGallery.Item>
+            </IconGallery.Variants>
         </IconGallery>
     </Story>
 </Preview>
@@ -138,11 +138,11 @@ A custom copy value can be specified with the `copyValue` prop.
 <Preview>
     <Story name="copy value">
         <IconGallery>
-            <IconGallery.Item name="add">
+            <IconGallery.Variants name="add">
                 <IconGallery.Variant size={24} copyValue="AddIcon24">
                     <AddIcon24 />
                 </IconGallery.Variant>
-            </IconGallery.Item>
+            </IconGallery.Variants>
         </IconGallery>
     </Story>
 </Preview>
@@ -151,14 +151,12 @@ To apply a custom pattern for all icons copy value, a function can be provided t
 
 <Preview>
     <Story name="get copy value">
-        <IconGallery
-            getCopyValue={({ itemName, variantSize }) => `${itemName.toUpperCase()}-${variantSize}`}
-        >
-            <IconGallery.Item name="add">
+        <IconGallery getCopyValue={({ itemName, variantSize }) => `${itemName.toUpperCase()}-${variantSize}`}>
+            <IconGallery.Variants name="add">
                 <IconGallery.Variant size={24}>
                     <AddIcon24 />
                 </IconGallery.Variant>
-            </IconGallery.Item>
+            </IconGallery.Variants>
         </IconGallery>
     </Story>
 </Preview>
@@ -169,36 +167,34 @@ To apply a custom pattern for the display name of all the items, a function can 
 
 <Preview>
     <Story name="get display name">
-        <IconGallery
-            getDisplayName={({ itemName }) => itemName.toUpperCase()}
-        >
-            <IconGallery.Item name="add">
+        <IconGallery getDisplayName={({ itemName }) => itemName.toUpperCase()}>
+            <IconGallery.Variants name="add">
                 <IconGallery.Variant size={24}>
                     <AddIcon24 />
                 </IconGallery.Variant>
-            </IconGallery.Item>
+            </IconGallery.Variants>
         </IconGallery>
     </Story>
 </Preview>
 
 ### Autosize
 
-When autosize is disabled, you are responsible of settings the `width` and `height` of the variant icons.
+When autosize is disabled, it's your responsability to set the `width` and `height` of the icons.
 
 <Preview>
     <Story name="autosize">
         <IconGallery>
-            <IconGallery.Item name="add">
-                <IconGallery.Variant size={24} autosize={false}>
+            <IconGallery.Variants name="add" autosize={false}>
+                <IconGallery.Variant size={24}>
                     <AddIcon24 style={{ width: "24px", height: "24px" }} />
                 </IconGallery.Variant>
-                <IconGallery.Variant size={32} autosize={false}>
+                <IconGallery.Variant size={32}>
                     <AddIcon style={{ width: "32px", height: "32px" }} />
                 </IconGallery.Variant>
-                <IconGallery.Variant size={48} autosize={false}>
+                <IconGallery.Variant size={48}>
                     <AddIcon style={{ width: "48px", height: "48px" }} />
                 </IconGallery.Variant>
-            </IconGallery.Item>
+            </IconGallery.Variants>
         </IconGallery>
     </Story>
 </Preview>
@@ -211,19 +207,7 @@ Variants are optionnal, you can still use this component if your design system d
     <Story name="no-variants">
         <IconGallery>
             <IconGallery.Item name="add">
-                <IconGallery.Icon>
-                    <AddIcon style={{ width: "32px", height: "32px" }} />
-                </IconGallery.Icon>
-            </IconGallery.Item>
-            <IconGallery.Item name="calendar">
-                <IconGallery.Icon>
-                    <CalendarIcon style={{ width: "32px", height: "32px" }} />
-                </IconGallery.Icon>
-            </IconGallery.Item>
-            <IconGallery.Item name="check">
-                <IconGallery.Icon>
-                    <CheckIcon style={{ width: "32px", height: "32px" }} />
-                </IconGallery.Icon>
+                <AddIcon style={{ width: "32px", height: "32px" }} />
             </IconGallery.Item>
         </IconGallery>
     </Story>
@@ -236,14 +220,14 @@ The icon gallery have been design for flexibility at the expense of redundacy. T
 ```jsx
 function renderItem(name, Icon24, Icon32) {
     return (
-        <IconGallery.Item name={name}>
+        <IconGallery.Variants name={name}>
             <IconGallery.Variant size={24}>
                 {Icon24 && <Icon24 />}
             </IconGallery.Variant>
             <IconGallery.Variant size={32}>
                 {Icon32 && <Icon32 />}
             </IconGallery.Variant>
-        </IconGallery.Item>
+        </IconGallery.Variants>
     );
 }
 ```

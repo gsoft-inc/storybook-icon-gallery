@@ -10,8 +10,8 @@ const { className, styles } = css.resolve` /* stylelint-disable-line */
         display: flex;
         justify-content: center;
         align-items: center;
-        min-width: 2rem;
-        min-height: 2rem;
+        width: 100%;
+        height: 100%;
     }
 
     .copyContainer {
@@ -69,7 +69,7 @@ const { className, styles } = css.resolve` /* stylelint-disable-line */
     }
 `;
 
-export function InnerIcon({ icon, copyValue, containerStyle }) {
+export function InnerIcon({ icon, copyValue }) {
     const [copySucceeded, setCopySucceeded] = useState(false);
     const textAreaRef = useRef(null);
 
@@ -108,7 +108,7 @@ export function InnerIcon({ icon, copyValue, containerStyle }) {
     };
 
     return (
-        <div className={`${className} iconContainer sbdocs sbdocs-ig-icon-container`} style={containerStyle}>
+        <div className={`${className} iconContainer sbdocs sbdocs-ig-icon-container`}>
             {icon}
             <div className={`${className} copyContainer sbdocs sbdocs-ig-copy-container`} onClick={copyToClipboard}>
                 {copyAnimation.map(({ item, props, key }) => {

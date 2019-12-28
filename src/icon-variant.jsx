@@ -17,6 +17,8 @@ const styles = css` /* stylelint-disable-line */
 
     .content {
         display: flex;
+        min-width: 2rem;
+        min-height: 2rem;
     }
 `;
 
@@ -34,32 +36,30 @@ function getIcon(children) {
     const childrenCount = Children.count(children);
 
     if (childrenCount > 1) {
-        throw new Error("IconGallery - Expected to receive a single React element child");
+        throw new Error("IconVariant - Expected to receive a single React element child");
     }
 
     return childrenCount !== 0 ? Children.toArray(children)[0] : undefined;
 }
 
-export function Variant({ size, copyValue, autosize, children, context }) {
-    const { getCopyValue, itemName, itemChildrenProps } = context;
+export function IconVariant({ size, copyValue, children, context }) {
+    const { getCopyValue, itemName, autosize, renderingSize } = context;
 
     const icon = getIcon(children);
-    const containerSize = autosize ? Math.max(...itemChildrenProps.map(x => x.size)) : null;
     const containerStyle = autosize
         ? {
-            width: containerSize,
-            height: containerSize
+            width: renderingSize,
+            height: renderingSize
         }
         : {};
 
     return (
         <div className="variant sbdocs sbdocs-ig-variant">
             <div className="header sbdocs sbdocs-ig-variant-header">{size}</div>
-            <div className="content sbdocs sbdocs-ig-variant-content">
+            <div className="content sbdocs sbdocs-ig-variant-content" style={containerStyle}>
                 {icon && <InnerIcon
                     icon={renderIcon(icon, size, autosize)}
                     copyValue={copyValue ? copyValue : getCopyValue({ itemName, variantSize: size, icon })}
-                    containerStyle={containerStyle}
                 />}
             </div>
             <style jsx>{styles}</style>
@@ -67,7 +67,7 @@ export function Variant({ size, copyValue, autosize, children, context }) {
     );
 }
 
-Variant.propTypes = {
+IconVariant.propTypes = {
     /**
      * The variant size.
      */
@@ -77,19 +77,16 @@ Variant.propTypes = {
      */
     copyValue: string,
     /**
-     * Automatically set the variant size as the width and height of the variant icon.
-     */
-    autosize: bool,
-    /**
      * @ignore
      */
-    context: shape(CONTEXT_SHAPE),
+    context: shape({
+        ...CONTEXT_SHAPE,
+        itemName: string,
+        autosize: bool,
+        renderingSize: number
+    }),
     /**
      * @ignore
      */
     children: any
-};
-
-Variant.defaultProps = {
-    autosize: true
 };
