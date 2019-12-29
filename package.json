@@ -14,7 +14,7 @@
     "start-sb": "start-storybook -c storybook",
     "start-docs": "start-storybook -c storybook --docs",
     "build": "run-s build:*",
-    "build:pkg": "babel src -d dist --config-file ./babel.config.js",
+    "build:pkg": "babel src -d dist --config-file ./babel.config.js --copy-files",
     "build:sb": "build-storybook -c storybook -o storybook/dist/sb",
     "build:docs": "build-storybook -c storybook -o storybook/dist/docs --docs",
     "serve-sb": "serve storybook/dist/sb",
