@@ -3,6 +3,9 @@
   "version": "0.2.3",
   "description": "An icon gallery for Storybook docs that support multiple icon variants.",
   "main": "dist/index.js",
+  "files": [
+      "dist"
+  ],
   "repository": "https://github.com/gsoft-inc/storybook-icon-gallery.git",
   "author": "Groupe GSoft inc.",
   "license": "Apache-2.0",
