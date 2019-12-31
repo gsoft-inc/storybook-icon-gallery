@@ -12,6 +12,7 @@ const { className, styles } = css.resolve` /* stylelint-disable-line */
         align-items: center;
         width: 100%;
         height: 100%;
+        outline: none;
     }
 
     .copy {
@@ -35,15 +36,20 @@ const { className, styles } = css.resolve` /* stylelint-disable-line */
     }
 
     .copy-action {
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        position: absolute;
         color: #FFF;
         font-weight: 500;
         font-size: .75rem;
         cursor: pointer;
         width: 100%;
         height: 100%;
+        background-color: transparent;
+        border: 0;
+        outline: none;
+    }
+
+    .copy-action::-moz-focus-inner {
+        border: 0;
     }
 
     .copy-succeeded {
@@ -62,9 +68,9 @@ const { className, styles } = css.resolve` /* stylelint-disable-line */
     }
 
     .copy-form {
+        position: absolute;
         opacity: 0.01;
         height: 0;
-        position: absolute;
         z-index: -1;
     }
 `;
@@ -100,6 +106,16 @@ export function InnerIcon({ icon, copyValue }) {
         }
     });
 
+    const onIconClick = () => {
+        copyToClipboard();
+    };
+
+    const onIconEnterKey = event => {
+        if (event.keyCode === 13) {
+            copyToClipboard();
+        }
+    };
+
     const copyToClipboard = () => {
         textAreaRef.current.select();
         document.execCommand("copy");
@@ -108,19 +124,30 @@ export function InnerIcon({ icon, copyValue }) {
     };
 
     return (
-        <div className={`${className} icon sbdocs sbdocs-ig-icon`}>
+        <div className={`${className} icon sbdocs sbdocs-ig-icon`} onKeyDown={onIconEnterKey} tabIndex={0}>
             {icon}
-            <div className={`${className} copy sbdocs sbdocs-ig-copy`} onClick={copyToClipboard}>
+            <div className={`${className} copy sbdocs sbdocs-ig-copy`} tabIndex={-1}>
                 {copyAnimation.map(({ item, props, key }) => {
                     if (item) {
                         return (
-                            <a.div style={props} className={`${className} copy-succeeded sbdocs sbdocs-ig-copy-succeeded`} key={key}>
-                                <CheckmarkIcon className={`${className} copy-checkmark sbdocs sbdocs-ig-copy-checkmark`} />
+                            <a.div style={props} className={`${className} copy-succeeded sbdocs sbdocs-ig-copy-succeeded`} key={key} tabIndex={-1}>
+                                <CheckmarkIcon className={`${className} copy-checkmark sbdocs sbdocs-ig-copy-checkmark`} tabIndex={-1} />
                             </a.div>
                         );
                     }
 
-                    return <a.div style={props} className={`${className} copy-action sbdocs sbdocs-ig-copy-action`} key={key}>Copy</a.div>;
+                    return (
+                        <a.button
+                            style={props}
+                            className={`${className} copy-action sbdocs sbdocs-ig-copy-action`}
+                            onClick={onIconClick}
+                            type="button"
+                            key={key}
+                            tabIndex={-1}
+                        >
+                            Copy
+                        </a.button>
+                    );
                 })}
             </div>
             <form className={`${className} copy-form`}>
@@ -128,6 +155,7 @@ export function InnerIcon({ icon, copyValue }) {
                     readOnly
                     ref={textAreaRef}
                     value={copyValue}
+                    tabIndex={-1}
                 />
             </form>
             {styles}
