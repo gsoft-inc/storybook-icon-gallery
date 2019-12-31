@@ -1,6 +1,6 @@
 {
   "name": "storybook-icon-gallery",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "An icon gallery for Storybook docs that support multiple icon variants.",
   "main": "dist/index.js",
   "files": [
