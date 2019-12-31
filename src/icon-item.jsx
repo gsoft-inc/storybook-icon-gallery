@@ -53,7 +53,7 @@ IconItem.propTypes = {
     /**
      * The icon size.
      */
-    size: number.isRequired,
+    size: number,
     /**
      * A custom value to copy to the clipboard when the variant is clicked.
      */
@@ -66,4 +66,8 @@ IconItem.propTypes = {
      * @ignore
      */
     children: any
+};
+
+IconItem.defaultProps = {
+    size: 32
 };
