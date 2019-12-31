@@ -1,6 +1,6 @@
 {
   "name": "storybook-icon-gallery",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An icon gallery for Storybook docs that support multiple icon variants.",
   "main": "dist/index.js",
   "files": [
@@ -8,7 +8,9 @@
   ],
   "repository": "https://github.com/gsoft-inc/storybook-icon-gallery.git",
   "author": "Groupe GSoft inc.",
-  "keywords": ["storybook"],
+  "keywords": [
+    "storybook"
+  ],
   "license": "Apache-2.0",
   "scripts": {
     "start": "yarn watch",
