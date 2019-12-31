@@ -8,6 +8,7 @@
   ],
   "repository": "https://github.com/gsoft-inc/storybook-icon-gallery.git",
   "author": "Groupe GSoft inc.",
+  "keywords": ["storybook"],
   "license": "Apache-2.0",
   "scripts": {
     "start": "yarn watch",
