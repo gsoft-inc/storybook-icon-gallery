@@ -10,11 +10,31 @@ An icon gallery for Storybook docs that support multiple icon variants.
 
 ## Installation
 
+Install the NPM package:
+
 ```bash
 npm i -D storybook-icon-gallery react-spring
 ```
 
-Full documentation available at: https://storybook-icon-gallery.netlify.com/
+Then import the icon gallery components:
+
+```js
+import { IconGallery } from "storybook-icon-gallery";
+```
+
+And configure your icons:
+
+```jsx
+<IconGallery>
+    <IconGallery.Variants name="add">
+        <IconGallery.Variant size={24}>
+            <AddIcon24 />
+        </IconGallery.Variant>
+    </IconGallery.Variants>
+</IconGallery>
+```
+
+Full usage documentation available at: https://storybook-icon-gallery.netlify.com/
 
 ## Maintainers
 

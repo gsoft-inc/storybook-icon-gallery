@@ -6,6 +6,11 @@ body {
     font-size: 16px;
 }
 
+.sbdocs,
+.sbdocs.sbdocs-content {
+    font-family: Calibre, Arial, Helvetica, sans-serif !important;
+}
+
 .sbdocs.sbdocs-wrapper {
     padding: 2rem 2rem 1rem 2rem;
 }
@@ -14,10 +19,33 @@ body {
     max-width: 1200px;
 }
 
+.sbdocs.sbdocs-p,
+/* TODO: Use sbdocs-summary escape hatch when it's available */
+.sbdocs summary {
+    font-size: 1.125rem;
+}
+
+details {
+    padding: 8px;
+    border-radius: 4px;
+}
+
+details + details {
+    margin-top: var(--scale-delta);
+}
+
+.sbdocs summary {
+    cursor: pointer;
+}
+
 .sbdocs.sbdocs-h1 {
     font-weight: 600;
 }
 
 .sbdocs.sbdocs-h2 {
     margin: 1.5rem 0;
+}
+
+.sbdocs.sbdocs-a {
+    font-size: 1.125rem;
 }
