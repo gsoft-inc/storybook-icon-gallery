@@ -6,7 +6,7 @@
 
 An icon gallery for Storybook docs that support multiple icon variants.
 
-![Icon Gallery](https://raw.githubusercontent.com/gsoft-inc/storybook-icon-gallery/master/assets/teaser.png)
+[![Icon Gallery](https://raw.githubusercontent.com/gsoft-inc/storybook-icon-gallery/master/assets/teaser.png)](https://storybook-icon-gallery.netlify.com/)
 
 ## Installation
 
