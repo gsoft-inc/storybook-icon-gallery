@@ -6,6 +6,7 @@ body {
     font-size: 16px;
 }
 
+/* SB docs */
 .sbdocs,
 .sbdocs.sbdocs-content {
     font-family: Calibre, Arial, Helvetica, sans-serif !important;
@@ -48,4 +49,11 @@ details + details {
 
 .sbdocs.sbdocs-a {
     font-size: 1.125rem;
+}
+
+/* Utils */
+.border-box *,
+.border-box *::before,
+.border-box *::after {
+    box-sizing: border-box;
 }

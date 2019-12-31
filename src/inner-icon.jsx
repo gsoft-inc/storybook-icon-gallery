@@ -26,6 +26,7 @@ const { className, styles } = css.resolve` /* stylelint-disable-line */
         background-color: #0E1C3D;
         width: 100%;
         height: 100%;
+        box-sizing: content-box;
     }
 
     .icon:hover .copy,
