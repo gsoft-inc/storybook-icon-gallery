@@ -276,6 +276,21 @@ An icon gallery can have multiple lines. The component will try to squeeze as mu
     </Story>
 </Preview>
 
+<Story
+    name="box-sizing-override"
+    parameters={{
+        docs: {
+            disable: true
+        }
+    }}
+>
+    <div className="border-box">
+        <IconGallery>
+            {renderItem("add", AddIcon24, AddIcon)}
+        </IconGallery>
+    </div>
+</Story>
+
 
 
 

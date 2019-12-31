@@ -7,7 +7,6 @@ import { IconVariants } from "./icon-variants";
 
 const styles = css` /* stylelint-disable-line */
     .icon-gallery {
-        box-sizing: border-box;
         display: flex;
         flex-wrap: wrap;
     }
