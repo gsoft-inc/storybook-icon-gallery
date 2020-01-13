@@ -30,17 +30,7 @@ module.exports = {
             }
         ],
         "babel-plugin-react-require",
-        "styled-jsx/babel",
-        [
-            "babel-plugin-named-asset-import",
-            {
-                loaderMap: {
-                    svg: {
-                        "ReactComponent": "@svgr/webpack?-svgo,+ref![path]"
-                    }
-                }
-            }
-        ]
+        "styled-jsx/babel"
     ].filter(Boolean)
 };
 
