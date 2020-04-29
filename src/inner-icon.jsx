@@ -1,10 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { a, useTransition } from "react-spring";
 import css from "styled-jsx/css";
-import { CheckmarkIcon } from "./assets";
 
-// Using css.resolve because of the react-spring animation.
-const { className, styles } = css.resolve` /* stylelint-disable-line */
+const styles = css` /* stylelint-disable-line */
     .icon {
         position: relative;
         display: flex;
@@ -22,7 +19,7 @@ const { className, styles } = css.resolve` /* stylelint-disable-line */
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: .25rem;
+        padding: 0;
         background-color: #0E1C3D;
         width: 100%;
         height: 100%;
@@ -30,17 +27,51 @@ const { className, styles } = css.resolve` /* stylelint-disable-line */
     }
 
     .icon:hover .copy,
-    .icon:focus .copy,
-    .icon:active .copy {
+    .icon:hover:focus .copy,
+    .icon:hover:active .copy {
         opacity: 1;
         transition: opacity .15s ease-in;
     }
 
+    .icon::after {
+        position: absolute;
+        color: #FFF;
+        font-size: .75rem;
+        display: flex;
+        justify-content: center; /* align horizontal */
+        align-items: center; /* align vertical */
+        height: 100%;
+        width: 100%;
+    }
+
+    .icon:hover::after {
+        content: "Copy";
+    }
+
+    .icon:hover:focus::after,
+    .icon:hover:active::after {
+        opacity: 1;
+        content: "\2713";
+        animation-duration: 300ms;
+        animation-name: slidein;
+    }
+
+    @keyframes slidein {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        
+        to {
+            opacity: 1;
+            transform: translateY(0px);
+        }
+    }
+    
     .copy-action {
         position: absolute;
         color: #FFF;
         font-weight: 500;
-        font-size: .75rem;
         cursor: pointer;
         width: 100%;
         height: 100%;
@@ -92,21 +123,6 @@ export function InnerIcon({ icon, copyValue }) {
         return () => clearTimeout(timeoutId);
     }, [copySucceeded]);
 
-    const copyAnimation = useTransition(copySucceeded, null, {
-        from: {
-            opacity: 0,
-            transform: "translate3d(0,-20px,0)"
-        },
-        enter: {
-            opacity: 1,
-            transform: "translate3d(0,0px,0)"
-        },
-        leave: {
-            opacity: 0,
-            transform: "translate3d(0,0px,0)"
-        }
-    });
-
     const onIconClick = () => {
         copyToClipboard();
     };
@@ -125,33 +141,19 @@ export function InnerIcon({ icon, copyValue }) {
     };
 
     return (
-        <div className={`${className} icon sbdocs sbdocs-ig-icon`} onKeyDown={onIconEnterKey} tabIndex={0}>
+        <div className="icon sbdocs sbdocs-ig-icon" onKeyDown={onIconEnterKey} tabIndex={0}>
             {icon}
-            <div className={`${className} copy sbdocs sbdocs-ig-copy`} tabIndex={-1}>
-                {copyAnimation.map(({ item, props, key }) => {
-                    if (item) {
-                        return (
-                            <a.div style={props} className={`${className} copy-succeeded sbdocs sbdocs-ig-copy-succeeded`} key={key} tabIndex={-1}>
-                                <CheckmarkIcon className={`${className} copy-checkmark sbdocs sbdocs-ig-copy-checkmark`} tabIndex={-1} />
-                            </a.div>
-                        );
-                    }
-
-                    return (
-                        <a.button
-                            style={props}
-                            className={`${className} copy-action sbdocs sbdocs-ig-copy-action`}
-                            onClick={onIconClick}
-                            type="button"
-                            key={key}
-                            tabIndex={-1}
-                        >
-                            Copy
-                        </a.button>
-                    );
-                })}
+            <div className="copy sbdocs sbdocs-ig-copy" tabIndex={-1}>
+                <button
+                    className="copy-action sbdocs sbdocs-ig-copy-action"
+                    onClick={onIconClick}
+                    type="button"
+                    tabIndex={-1}
+                >
+                </button>
+                <div class="copy-text"></div>
             </div>
-            <form className={`${className} copy-form`}>
+            <form className="copy-form">
                 <textarea
                     readOnly
                     ref={textAreaRef}
@@ -159,7 +161,7 @@ export function InnerIcon({ icon, copyValue }) {
                     tabIndex={-1}
                 />
             </form>
-            {styles}
+            <style jsx>{styles}</style>
         </div>
     );
 }
