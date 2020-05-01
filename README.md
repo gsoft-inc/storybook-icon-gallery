@@ -13,7 +13,7 @@ An icon gallery for Storybook docs that support multiple icon variants.
 Install the NPM package:
 
 ```bash
-npm i -D storybook-icon-gallery react-spring
+npm i -D storybook-icon-gallery
 ```
 
 Then import the icon gallery components:
