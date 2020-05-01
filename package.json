@@ -1,79 +1,79 @@
 {
-  "name": "storybook-icon-gallery",
-  "version": "1.2.0",
-  "description": "An icon gallery for Storybook docs that support multiple icon variants.",
-  "main": "dist/index.js",
-  "files": [
-    "dist"
-  ],
-  "repository": "https://github.com/gsoft-inc/storybook-icon-gallery.git",
-  "author": "Groupe GSoft inc.",
-  "keywords": [
-    "storybook"
-  ],
-  "license": "Apache-2.0",
-  "scripts": {
-    "start-sb": "start-storybook -c storybook",
-    "start-docs": "start-storybook -c storybook --docs",
-    "build": "run-s build:*",
-    "build:pkg": "babel src -d dist --config-file ./babel.config.js --copy-files",
-    "build:sb": "build-storybook -c storybook -o storybook/dist/sb",
-    "build:docs": "build-storybook -c storybook -o storybook/dist/docs --docs",
-    "serve-sb": "serve storybook/dist/sb",
-    "serve-docs": "serve storybook/dist/docs",
-    "reset": "yarn clean && rimraf node_modules",
-    "clean": "rimraf dist && rimraf storybook/dist",
-    "lint-ci": "yarn eslint -- -- 0 && yarn stylelint",
-    "eslint": "run-s \"eslint:* --max-warnings={1:--1}\"",
-    "eslint:pkg": "eslint --ext .js,.jsx src",
-    "stylelint": "run-s stylelint:*",
-    "stylelint:pkg": "stylelint \"src/**/*.(js|jsx)\"",
-    "deploy-docs": "netlify deploy --prod --dir=storybook/dist/docs --site=df98c158-8a37-4882-b8b9-59540f32c204",
-    "netlify-ci-docs": "yarn install && yarn build:docs",
-    "prepublishOnly": "yarn build:pkg",
-    "release": "yarn login && yarn np --no-cleanup --no-tests"
-  },
-  "peerDependencies": {
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0"
-  },
-  "dependencies": {
-    "prop-types": "*",
-    "styled-jsx": "^3.2.0"
-  },
-  "devDependencies": {
-    "@babel/cli": "7.7.7",
-    "@babel/core": "7.7.7",
-    "@babel/plugin-transform-runtime": "7.7.6",
-    "@babel/preset-env": "7.7.7",
-    "@babel/preset-react": "7.7.4",
-    "@orbit-ui/fonts": "2.0.0",
-    "@orbit-ui/icons": "4.0.1",
-    "@sharegate/browserslist-config-recommended": "1.0.1",
-    "@sharegate/eslint-config-lodash": "1.0.2",
-    "@sharegate/eslint-config-react": "1.1.0",
-    "@sharegate/eslint-config-recommended": "1.1.0",
-    "@sharegate/stylelint-config-recommended": "1.0.0",
-    "@storybook/addon-docs": "5.3.0-rc.5",
-    "@storybook/react": "5.3.0-rc.5",
-    "babel-eslint": "10.0.3",
-    "babel-loader": "8.0.6",
-    "babel-plugin-react-require": "3.1.1",
-    "browserslist": "4.8.2",
-    "eslint": "6.8.0",
-    "eslint-plugin-mdx": "1.6.5",
-    "lodash": "4.17.15",
-    "netlify-cli": "2.25.0",
-    "np": "5.2.1",
-    "npm-run-all": "4.1.5",
-    "prop-types": "15.7.2",
-    "react": "16.12.0",
-    "react-dom": "16.12.0",
-    "rimraf": "3.0.0",
-    "serve": "11.2.0",
-    "stylelint": "12.0.0"
-  },
-  "engines": {
-    "node": ">=12"
+    "name": "storybook-icon-gallery",
+    "version": "1.2.0",
+    "description": "An icon gallery for Storybook docs that support multiple icon variants.",
+    "main": "dist/index.js",
+    "files": [
+      "dist"
+    ],
+    "repository": "https://github.com/gsoft-inc/storybook-icon-gallery.git",
+    "author": "Groupe GSoft inc.",
+    "keywords": [
+      "storybook"
+    ],
+    "license": "Apache-2.0",
+    "scripts": {
+      "start-sb": "start-storybook -c storybook",
+      "start-docs": "start-storybook -c storybook --docs",
+      "build": "run-s build:*",
+      "build:pkg": "babel src -d dist --config-file ./babel.config.js --copy-files",
+      "build:sb": "build-storybook -c storybook -o storybook/dist/sb",
+      "build:docs": "build-storybook -c storybook -o storybook/dist/docs --docs",
+      "serve-sb": "serve storybook/dist/sb",
+      "serve-docs": "serve storybook/dist/docs",
+      "reset": "yarn clean && rimraf node_modules",
+      "clean": "rimraf dist && rimraf storybook/dist",
+      "lint-ci": "yarn eslint -- -- 0 && yarn stylelint",
+      "eslint": "run-s \"eslint:* --max-warnings={1:--1}\"",
+      "eslint:pkg": "eslint --ext .js,.jsx src",
+      "stylelint": "run-s stylelint:*",
+      "stylelint:pkg": "stylelint \"src/**/*.(js|jsx)\"",
+      "deploy-docs": "netlify deploy --prod --dir=storybook/dist/docs --site=df98c158-8a37-4882-b8b9-59540f32c204",
+      "netlify-ci-docs": "yarn install && yarn build:docs",
+      "prepublishOnly": "yarn build:pkg",
+      "release": "yarn login && yarn np --no-cleanup --no-tests"
+    },
+    "peerDependencies": {
+      "react": "^16.12.0",
+      "react-dom": "^16.12.0"
+    },
+    "dependencies": {
+      "prop-types": "*",
+      "styled-jsx": "^3.2.0"
+    },
+    "devDependencies": {
+      "@babel/cli": "7.7.7",
+      "@babel/core": "7.7.7",
+      "@babel/plugin-transform-runtime": "7.7.6",
+      "@babel/preset-env": "7.7.7",
+      "@babel/preset-react": "7.7.4",
+      "@orbit-ui/fonts": "2.0.0",
+      "@orbit-ui/icons": "4.0.1",
+      "@sharegate/browserslist-config-recommended": "1.0.1",
+      "@sharegate/eslint-config-lodash": "1.0.2",
+      "@sharegate/eslint-config-react": "1.1.0",
+      "@sharegate/eslint-config-recommended": "1.1.0",
+      "@sharegate/stylelint-config-recommended": "1.0.0",
+      "@storybook/addon-docs": "5.3.0-rc.5",
+      "@storybook/react": "5.3.0-rc.5",
+      "babel-eslint": "10.0.3",
+      "babel-loader": "8.0.6",
+      "babel-plugin-react-require": "3.1.1",
+      "browserslist": "4.8.2",
+      "eslint": "6.8.0",
+      "eslint-plugin-mdx": "1.6.5",
+      "lodash": "4.17.15",
+      "netlify-cli": "2.25.0",
+      "np": "5.2.1",
+      "npm-run-all": "4.1.5",
+      "prop-types": "15.7.2",
+      "react": "16.12.0",
+      "react-dom": "16.12.0",
+      "rimraf": "3.0.0",
+      "serve": "11.2.0",
+      "stylelint": "12.0.0"
+    },
+    "engines": {
+      "node": ">=12"
+    }
   }
-}
