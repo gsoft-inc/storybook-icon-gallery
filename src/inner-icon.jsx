@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import css from "styled-jsx/css";
 import { CheckmarkIcon } from "./assets";
 
-const styles = css` /* stylelint-disable-line */
+const { className, styles } = css.resolve` /* stylelint-disable-line */
     .icon {
         position: relative;
         display: flex;
@@ -122,22 +122,22 @@ export function InnerIcon({ icon, copyValue }) {
     };
 
     return (
-        <div className="icon sbdocs sbdocs-ig-icon" onKeyDown={onIconEnterKey} tabIndex={0}>
+        <div className={`${className} icon sbdocs sbdocs-ig-icon`} onKeyDown={onIconEnterKey} tabIndex={0}>
             {icon}
-            <div className="copy sbdocs sbdocs-ig-copy" tabIndex={-1}>
+            <div className={`${className} copy sbdocs sbdocs-ig-copy`} tabIndex={-1}>
                 {!copySucceeded && <button
-                    className="copy-action sbdocs sbdocs-ig-copy-action"
+                    className={`${className} copy-action sbdocs sbdocs-ig-copy-action`}
                     onClick={onIconClick}
                     type="button"
                     tabIndex={-1}
                 >
                     Copy
                 </button>}
-                {copySucceeded && <div className="copy-succeeded sbdocs sbdocs-ig-copy-succeeded" tabIndex={-1}>
-                    <CheckmarkIcon className="copy-checkmark sbdocs sbdocs-ig-copy-checkmark" tabIndex={-1} />
+                {copySucceeded && <div className={`${className} copy-succeeded sbdocs sbdocs-ig-copy-succeeded`} tabIndex={-1}>
+                    <CheckmarkIcon className={`${className} copy-checkmark sbdocs sbdocs-ig-copy-checkmark`} tabIndex={-1} />
                 </div>}
             </div>
-            <form className="copy-form">
+            <form className={`${className} copy-form`}>
                 <textarea
                     readOnly
                     ref={textAreaRef}
@@ -145,7 +145,7 @@ export function InnerIcon({ icon, copyValue }) {
                     tabIndex={-1}
                 />
             </form>
-            <style jsx>{styles}</style>
+            {styles}
         </div>
     );
 }
