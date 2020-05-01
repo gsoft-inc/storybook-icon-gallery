@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import css from "styled-jsx/css";
 import { CheckmarkIcon } from "./assets";
 
-// Using css.resolve because of the react-spring animation.
 const styles = css` /* stylelint-disable-line */
     .icon {
         position: relative;
@@ -59,6 +58,7 @@ const styles = css` /* stylelint-disable-line */
         align-items: center;
         width: 100%;
         height: 100%;
+        /* stylelint-disable-next-line */
         animation-duration: 500ms;
         animation-name: slidein;
     }
