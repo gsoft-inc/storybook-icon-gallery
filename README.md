@@ -121,3 +121,5 @@ To do so:
 ## License
 
 Copyright © 2019, GSoft inc. This code is licensed under the Apache License, Version 2.0. You may obtain a copy of this license at https://github.com/gsoft-inc/gsoft-license/blob/master/LICENSE.
+
+[![With ❤️ from ShareGate](https://raw.githubusercontent.com/gsoft-inc/gsoft-oss-assets/master/banner-thanks.png)](https://www.sharegate.com)
